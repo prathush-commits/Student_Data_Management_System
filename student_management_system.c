@@ -571,5 +571,116 @@ void loadFromFile()
 }
 
 
+/*---------------------------------------------------------
+                Sort Students
+---------------------------------------------------------*/
+
+void sortStudents()
+{
+    STUDENT *p1,*p2;
+
+    int choice;
+    int roll;
+    char name[50];
+    float percentage;
+
+    if(head == NULL || head->next == NULL)
+    {
+        printf("\nNot Enough Records...\n");
+        return;
+    }
+
+    printf("\nSort By");
+    printf("\n1. Name");
+    printf("\n2. Percentage");
+    printf("\nEnter Choice : ");
+    scanf("%d",&choice);
+
+    if(choice == 1)
+    {
+        for(p1=head;p1!=NULL;p1=p1->next)
+        {
+            for(p2=p1->next;p2!=NULL;p2=p2->next)
+            {
+                if(strcmp(p1->name,p2->name)>0)
+                {
+                    roll = p1->rollNo;
+                    p1->rollNo = p2->rollNo;
+                    p2->rollNo = roll;
+
+                    strcpy(name,p1->name);
+                    strcpy(p1->name,p2->name);
+                    strcpy(p2->name,name);
+
+                    percentage = p1->percentage;
+                    p1->percentage = p2->percentage;
+                    p2->percentage = percentage;
+                }
+            }
+        }
+
+        printf("\nSorted By Name Successfully...\n");
+    }
+    else if(choice == 2)
+    {
+        for(p1=head;p1!=NULL;p1=p1->next)
+        {
+            for(p2=p1->next;p2!=NULL;p2=p2->next)
+            {
+                if(p1->percentage > p2->percentage)
+                {
+                    roll = p1->rollNo;
+                    p1->rollNo = p2->rollNo;
+                    p2->rollNo = roll;
+
+                    strcpy(name,p1->name);
+                    strcpy(p1->name,p2->name);
+                    strcpy(p2->name,name);
+
+                    percentage = p1->percentage;
+                    p1->percentage = p2->percentage;
+                    p2->percentage = percentage;
+                }
+            }
+        }
+
+        printf("\nSorted Successfully...\n");
+    }
+    else
+    {
+        printf("\nInvalid Choice...\n");
+    }
+}
+
+/*---------------------------------------------------------
+                Reverse Linked List
+---------------------------------------------------------*/
+
+void reverseList()
+{
+    STUDENT *prev = NULL;
+    STUDENT *current = head;
+    STUDENT *next;
+
+    if(head == NULL)
+    {
+        printf("\nNo Records Found...\n");
+        return;
+    }
+
+    while(current != NULL)
+    {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+
+    head = prev;
+
+    printf("\nLinked List Reversed Successfully...\n");
+}
+
+
 
 
