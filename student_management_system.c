@@ -386,6 +386,59 @@ void searchStudent()
     }
 }
 
+/*---------------------------------------------------------
+                Modify Student
+---------------------------------------------------------*/
+
+void modifyStudent()
+{
+    STUDENT *temp;
+    int roll;
+    int found = 0;
+
+    if(head == NULL)
+    {
+        printf("\nNo Student Records Found...\n");
+        return;
+    }
+
+    printf("\nEnter Roll Number to Modify : ");
+    scanf("%d",&roll);
+
+    temp = head;
+
+    while(temp != NULL)
+    {
+        if(temp->rollNo == roll)
+        {
+            found = 1;
+
+            printf("\nCurrent Details");
+            printf("\n---------------------------");
+            printf("\nRoll No    : %d",temp->rollNo);
+            printf("\nName       : %s",temp->name);
+            printf("\nPercentage : %.2f\n",temp->percentage);
+
+            printf("\nEnter New Name : ");
+            scanf("%49s",temp->name);
+
+            printf("Enter New Percentage : ");
+            scanf("%f",&temp->percentage);
+
+            printf("\nStudent Record Updated Successfully...\n");
+
+            return;
+        }
+
+        temp = temp->next;
+    }
+
+    if(found == 0)
+    {
+        printf("\nRoll Number Not Found...\n");
+    }
+}
+
 
 
 
