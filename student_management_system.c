@@ -702,9 +702,14 @@ void countStudents()
                 Highest Percentage
 ---------------------------------------------------------*/
 
+/*---------------------------------------------------------
+                Highest Percentage
+---------------------------------------------------------*/
+
 void highestPercentage()
 {
     STUDENT *temp;
+    STUDENT *highest;
 
     if(head == NULL)
     {
@@ -712,21 +717,29 @@ void highestPercentage()
         return;
     }
 
-    temp = head;
+    highest = head;
+    temp = head->next;
 
-    while(temp->next != NULL)
+    while(temp != NULL)
     {
-        if(temp->percentage < temp->next->percentage)
-            temp = temp->next;
-        else
-            temp = temp;
+        if(temp->percentage > highest->percentage)
+        {
+            highest = temp;
+        }
+
+        temp = temp->next;
     }
 
-    printf("\nHighest Percentage Student\n");
-    printf("\nRoll No    : %d", temp->rollNo);
-    printf("\nName       : %s", temp->name);
-    printf("\nPercentage : %.2f\n", temp->percentage);
+    printf("\nHighest Percentage Student");
+    printf("\n--------------------------");
+    printf("\nRoll No    : %d", highest->rollNo);
+    printf("\nName       : %s", highest->name);
+    printf("\nPercentage : %.2f\n", highest->percentage);
 }
+
+/*---------------------------------------------------------
+                Lowest Percentage
+---------------------------------------------------------*/
 
 /*---------------------------------------------------------
                 Lowest Percentage
@@ -735,6 +748,7 @@ void highestPercentage()
 void lowestPercentage()
 {
     STUDENT *temp;
+    STUDENT *lowest;
 
     if(head == NULL)
     {
@@ -742,20 +756,24 @@ void lowestPercentage()
         return;
     }
 
-    temp = head;
+    lowest = head;
+    temp = head->next;
 
-    while(temp->next != NULL)
+    while(temp != NULL)
     {
-        if(temp->percentage > temp->next->percentage)
-            temp = temp->next;
-        else
-            temp = temp;
+        if(temp->percentage < lowest->percentage)
+        {
+            lowest = temp;
+        }
+
+        temp = temp->next;
     }
 
-    printf("\nLowest Percentage Student\n");
-    printf("\nRoll No    : %d", temp->rollNo);
-    printf("\nName       : %s", temp->name);
-    printf("\nPercentage : %.2f\n", temp->percentage);
+    printf("\nLowest Percentage Student");
+    printf("\n-------------------------");
+    printf("\nRoll No    : %d", lowest->rollNo);
+    printf("\nName       : %s", lowest->name);
+    printf("\nPercentage : %.2f\n", lowest->percentage);
 }
 /*---------------------------------------------------------
                 Average Percentage
