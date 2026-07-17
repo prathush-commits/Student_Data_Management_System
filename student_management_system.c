@@ -440,6 +440,57 @@ void modifyStudent()
 }
 
 
+/*---------------------------------------------------------
+                Delete Student
+---------------------------------------------------------*/
+
+void deleteStudent()
+{
+    STUDENT *temp;
+    STUDENT *prev;
+
+    int roll;
+
+    if(head == NULL)
+    {
+        printf("\nNo Student Records Found...\n");
+        return;
+    }
+
+    printf("\nEnter Roll Number to Delete : ");
+    scanf("%d",&roll);
+
+    temp = head;
+    prev = NULL;
+
+    while(temp != NULL)
+    {
+        if(temp->rollNo == roll)
+        {
+            if(temp == head)
+            {
+                head = head->next;
+            }
+            else
+            {
+                prev->next = temp->next;
+            }
+
+            free(temp);
+
+            printf("\nStudent Deleted Successfully...\n");
+
+            return;
+        }
+
+        prev = temp;
+        temp = temp->next;
+    }
+
+    printf("\nRoll Number Not Found...\n");
+}
+
+
 
 
 
