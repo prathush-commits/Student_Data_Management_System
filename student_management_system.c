@@ -181,3 +181,91 @@ void menu()
         }
     }
 }
+
+
+
+
+/*---------------------------------------------------------
+                Generate Roll Number
+---------------------------------------------------------*/
+
+int generateRollNumber()
+{
+    int roll = 1;
+    STUDENT *temp;
+
+    while(1)
+    {
+        int found = 0;
+
+        temp = head;
+
+        while(temp != NULL)
+        {
+            if(temp->rollNo == roll)
+            {
+                found = 1;
+                break;
+            }
+
+            temp = temp->next;
+        }
+
+        if(found == 0)
+            return roll;
+
+        roll++;
+    }
+}
+
+/*---------------------------------------------------------
+                Add Student
+---------------------------------------------------------*/
+
+void addStudent()
+{
+    STUDENT *newNode;
+    STUDENT *temp;
+
+    newNode = (STUDENT *)malloc(sizeof(STUDENT));
+
+    if(newNode == NULL)
+    {
+        printf("\nMemory Allocation Failed...\n");
+        return;
+    }
+
+    newNode->rollNo = generateRollNumber();
+
+    printf("\nAssigned Roll Number : %d", newNode->rollNo);
+
+    printf("\nEnter Student Name : ");
+    scanf("%49s", newNode->name);
+
+    printf("Enter Percentage : ");
+    scanf("%f", &newNode->percentage);
+
+    newNode->next = NULL;
+
+    if(head == NULL)
+    {
+        head = newNode;
+    }
+    else
+    {
+        temp = head;
+
+        while(temp->next != NULL)
+            temp = temp->next;
+
+        temp->next = newNode;
+    }
+
+    printf("\nStudent Added Successfully...\n");
+}
+
+
+
+
+
+
