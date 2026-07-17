@@ -681,6 +681,127 @@ void reverseList()
     printf("\nLinked List Reversed Successfully...\n");
 }
 
+/*---------------------------------------------------------
+                Count Students
+---------------------------------------------------------*/
+
+void countStudents()
+{
+    STUDENT *temp = head;
+    int count = 0;
+
+    while(temp != NULL)
+    {
+        count++;
+        temp = temp->next;
+    }
+
+    printf("\nTotal Students : %d\n", count);
+}
+/*---------------------------------------------------------
+                Highest Percentage
+---------------------------------------------------------*/
+
+void highestPercentage()
+{
+    STUDENT *temp;
+
+    if(head == NULL)
+    {
+        printf("\nNo Records Found...\n");
+        return;
+    }
+
+    temp = head;
+
+    while(temp->next != NULL)
+    {
+        if(temp->percentage < temp->next->percentage)
+            temp = temp->next;
+        else
+            temp = temp;
+    }
+
+    printf("\nHighest Percentage Student\n");
+    printf("\nRoll No    : %d", temp->rollNo);
+    printf("\nName       : %s", temp->name);
+    printf("\nPercentage : %.2f\n", temp->percentage);
+}
+
+/*---------------------------------------------------------
+                Lowest Percentage
+---------------------------------------------------------*/
+
+void lowestPercentage()
+{
+    STUDENT *temp;
+
+    if(head == NULL)
+    {
+        printf("\nNo Records Found...\n");
+        return;
+    }
+
+    temp = head;
+
+    while(temp->next != NULL)
+    {
+        if(temp->percentage > temp->next->percentage)
+            temp = temp->next;
+        else
+            temp = temp;
+    }
+
+    printf("\nLowest Percentage Student\n");
+    printf("\nRoll No    : %d", temp->rollNo);
+    printf("\nName       : %s", temp->name);
+    printf("\nPercentage : %.2f\n", temp->percentage);
+}
+/*---------------------------------------------------------
+                Average Percentage
+---------------------------------------------------------*/
+
+void averagePercentage()
+{
+    STUDENT *temp;
+    float sum = 0;
+    int count = 0;
+
+    if(head == NULL)
+    {
+        printf("\nNo Records Found...\n");
+        return;
+    }
+
+    temp = head;
+
+    while(temp != NULL)
+    {
+        sum += temp->percentage;
+        count++;
+        temp = temp->next;
+    }
+
+    printf("\nAverage Percentage : %.2f\n", sum / count);
+}
+/*---------------------------------------------------------
+                Delete All Students
+---------------------------------------------------------*/
+
+void deleteAllStudents()
+{
+    STUDENT *temp;
+
+    while(head != NULL)
+    {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+
+    printf("\nAll Student Records Deleted Successfully...\n");
+}
+
 
 
 
