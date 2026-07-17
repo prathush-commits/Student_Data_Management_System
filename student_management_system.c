@@ -491,7 +491,84 @@ void deleteStudent()
 }
 
 
+/*---------------------------------------------------------
+                Save Records to File
+---------------------------------------------------------*/
 
+void saveToFile()
+{
+    FILE *fp;
+    STUDENT *temp;
+
+    fp = fopen("student.dat","wb");
+
+    if(fp == NULL)
+    {
+        printf("\nUnable to Open File...\n");
+        return;
+    }
+
+    temp = head;
+
+    while(temp != NULL)
+    {
+        fwrite(temp,sizeof(STUDENT),1,fp);
+        temp = temp->next;
+    }
+
+    fclose(fp);
+
+    printf("\nRecords Saved Successfully...\n");
+}
+
+
+/*---------------------------------------------------------
+                Load Records from File
+---------------------------------------------------------*/
+
+void loadFromFile()
+{
+    FILE *fp;
+    STUDENT *newNode;
+    STUDENT *temp;
+
+    fp = fopen("student.dat","rb");
+
+    if(fp == NULL)
+        return;
+
+    while(1)
+    {
+        newNode = (STUDENT *)malloc(sizeof(STUDENT));
+
+        if(newNode == NULL)
+            break;
+
+        if(fread(newNode,sizeof(STUDENT),1,fp) != 1)
+        {
+            free(newNode);
+            break;
+        }
+
+        newNode->next = NULL;
+
+        if(head == NULL)
+        {
+            head = newNode;
+        }
+        else
+        {
+            temp = head;
+
+            while(temp->next != NULL)
+                temp = temp->next;
+
+            temp->next = newNode;
+        }
+    }
+
+    fclose(fp);
+}
 
 
 
