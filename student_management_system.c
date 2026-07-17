@@ -265,6 +265,42 @@ void addStudent()
 }
 
 
+/*---------------------------------------------------------
+                Display Students
+---------------------------------------------------------*/
+
+void displayStudents()
+{
+    STUDENT *temp;
+
+    if(head == NULL)
+    {
+        printf("\nNo Student Records Found...\n");
+        return;
+    }
+
+    temp = head;
+
+    printf("\n=========================================================\n");
+    printf("%-10s %-25s %-10s\n","Roll No","Name","Percentage");
+    printf("=========================================================\n");
+
+    while(temp != NULL)
+    {
+        printf("%-10d %-25s %-10.2f\n",
+                temp->rollNo,
+                temp->name,
+                temp->percentage);
+
+        temp = temp->next;
+    }
+
+    printf("=========================================================\n");
+}
+
+
+
+
 
 
 
