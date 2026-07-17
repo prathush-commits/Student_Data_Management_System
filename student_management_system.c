@@ -299,6 +299,93 @@ void displayStudents()
 }
 
 
+/*---------------------------------------------------------
+                Search Student
+---------------------------------------------------------*/
+
+void searchStudent()
+{
+    STUDENT *temp;
+    int choice;
+    int roll;
+    char name[50];
+    int found = 0;
+
+    if(head == NULL)
+    {
+        printf("\nNo Records Found...\n");
+        return;
+    }
+
+    printf("\nSearch Student By");
+    printf("\n1. Roll Number");
+    printf("\n2. Name");
+    printf("\nEnter Choice : ");
+    scanf("%d",&choice);
+
+    temp = head;
+
+    switch(choice)
+    {
+        case 1:
+
+            printf("\nEnter Roll Number : ");
+            scanf("%d",&roll);
+
+            while(temp != NULL)
+            {
+                if(temp->rollNo == roll)
+                {
+                    printf("\nStudent Found\n");
+
+                    printf("\nRoll No     : %d",temp->rollNo);
+                    printf("\nName        : %s",temp->name);
+                    printf("\nPercentage  : %.2f\n",temp->percentage);
+
+                    found = 1;
+                    break;
+                }
+
+                temp = temp->next;
+            }
+
+            break;
+
+        case 2:
+
+            printf("\nEnter Name : ");
+            scanf("%49s",name);
+
+            while(temp != NULL)
+            {
+                if(strcmp(temp->name,name)==0)
+                {
+                    printf("\nStudent Found\n");
+
+                    printf("\nRoll No     : %d",temp->rollNo);
+                    printf("\nName        : %s",temp->name);
+                    printf("\nPercentage  : %.2f\n",temp->percentage);
+
+                    found = 1;
+                }
+
+                temp = temp->next;
+            }
+
+            break;
+
+        default:
+
+            printf("\nInvalid Choice...\n");
+            return;
+    }
+
+    if(found == 0)
+    {
+        printf("\nStudent Not Found...\n");
+    }
+}
+
 
 
 
